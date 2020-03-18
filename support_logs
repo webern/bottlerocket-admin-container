@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# This file is part of Bottlerocket.
+# Copyright Amazon.com, Inc., its affiliates, or other contributors. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+if [[ $EUID -ne 0  ]]; then
+    echo "support logs must be run as root, you can use 'sudo support-logs' in the admin container"
+    exit 1
+fi
+
+# Location of the container's rootfs on the host filesystem
+# ROOT_FS_PATH="/run/host-containerd/io.containerd.runtime.v1.linux/default/admin/rootfs"
+# BASH_PATH="/opt/bin/bash"
+
+# Start the root shell on the Bottlerocket host
+# exec nsenter -t 1 -a "${ROOT_FS_PATH}${BASH_PATH}"
+
+./sheltie
+
+echo "hello sheltie"
+
+exit 0
+
+echo "hello not sheltie"

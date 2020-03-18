@@ -43,13 +43,15 @@ RUN rm -f /etc/motd /etc/issue
 ADD --chown=root:root motd /etc/
 
 ADD --chown=root:root ec2-user.sudoers /etc/sudoers.d/ec2-user
-ADD start_admin_sshd.sh /usr/sbin/
+ADD ./start_admin_sshd.sh /usr/sbin/
 ADD ./sshd_config /etc/ssh/
 ADD ./sheltie /usr/bin/
+ADD ./support_logs /usr/bin/
 
 RUN chmod 440 /etc/sudoers.d/ec2-user
 RUN chmod +x /usr/sbin/start_admin_sshd.sh
 RUN chmod +x /usr/bin/sheltie
+RUN chmod +x /usr/bin/support_logs
 RUN groupadd -g 274 api
 RUN useradd -m -G users,api ec2-user
 
